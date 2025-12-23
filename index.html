@@ -1,1 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎来到创意空间</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1021;
+      --fg: #f4f6fb;
+      --muted: #c6ccdc;
+      --accent: #6dd3ff;
+      --accent-strong: #9b7bff;
+      --card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 10% 20%, rgba(157, 120, 255, 0.18), transparent 25%),
+                  radial-gradient(circle at 80% 0%, rgba(109, 211, 255, 0.2), transparent 30%),
+                  var(--bg);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--fg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 28px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .logo span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 0 18px rgba(109, 211, 255, 0.8);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: color 0.25s ease, background 0.25s ease;
+    }
+
+    nav a:hover {
+      color: var(--fg);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .cta {
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #05070f;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      border: none;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 64px 80px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    
+    .section-shell {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .badge .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 0 12px rgba(109, 211, 255, 0.7);
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: 3.1rem;
+      line-height: 1.1;
+      letter-spacing: -0.6px;
+    }
+
+    h1 span {
+      background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .secondary {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--fg);
+      font-weight: 700;
+      text-decoration: none;
+      transition: border 0.25s ease, background 0.25s ease;
+    }
+
+    .secondary:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 18px;
+    }
+
+    .glass {
+      position: relative;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(109, 211, 255, 0.08), rgba(155, 123, 255, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 25%);
+    }
+
+    .glass .title {
+      position: relative;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .glass .desc {
+      position: relative;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .pill-row {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--fg);
+      font-weight: 600;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .section-title {
+      margin: 70px 0 16px;
+      font-size: 1.8rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .unity-steps {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+    }
+
+    .unity-embed {
+      background: linear-gradient(135deg, rgba(109, 211, 255, 0.06), rgba(155, 123, 255, 0.05));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .unity-embed label {
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    .unity-embed input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--fg);
+      outline: none;
+    }
+
+    .unity-embed input:focus {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .unity-embed button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      color: #05070f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .unity-frame {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    @media (max-width: 900px) {
+      header, main {
+        padding: 24px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#top"><span></span> 创意空间</a>
+    <nav>
+      <a href="#vision">愿景</a>
+      <a href="#features">特色</a>
+      <a href="#unity">Unity导入</a>
+      <a href="#contact">联系</a>
+      <a class="cta" href="#contact">立即合作</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div>
+        <div class="badge"><span class="dot"></span> 与世界分享你的想法</div>
+        <h1>打造属于你的 <span>创意舞台</span></h1>
+        <p class="lead">无论是品牌故事、产品展示还是个人作品集，这里都能给你足够的灵感与空间，轻松发布、传递与分享。</p>
+        <div class="hero-actions">
+          <a class="cta" href="#features">开始探索</a>
+          <a class="secondary" href="#vision">查看愿景</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="glass card">
+          <div class="title">创意板</div>
+          <div class="desc">实时整理灵感、任务与素材，让团队保持清晰高效。</div>
+          <div class="pill-row">
+            <span class="pill">🎯 灵感收集</span>
+            <span class="pill">🧭 路线规划</span>
+            <span class="pill">🤝 协同审核</span>
+            <span class="pill">🚀 快速上线</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision">
+      <h2 class="section-title">愿景</h2>
+      <div class="card">
+        <p>我们相信，每一个创意都值得被听见。创意空间致力于提供简洁而优雅的展示方式，让你能够在最短的时间内把想法变成现实页面。从风格设定到内容发布，我们提供一站式工具，帮你节省时间，专注于创造。</p>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2 class="section-title">核心特色</h2>
+      <div class="grid">
+        <div class="card feature">
+          <h3>极简编辑</h3>
+          <p>预设组件与布局随取随用，帮助你快速拼出理想页面。</p>
+        </div>
+        <div class="card feature">
+          <h3>实时协作</h3>
+          <p>邀请伙伴同步编辑，修改历史自动保存，不错过任何灵感火花。</p>
+        </div>
+        <div class="card feature">
+          <h3>风格可控</h3>
+          <p>色板、字体与按钮样式一键切换，让品牌调性始终如一。</p>
+        </div>
+        <div class="card feature">
+          <h3>全端适配</h3>
+          <p>响应式设计确保在桌面、平板、手机端都保持出色表现。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="unity">
+      <h2 class="section-title">导入你的 Unity WebGL 游戏</h2>
+      <div class="section-shell">
+        <div class="card feature">
+          <h3>四步上线</h3>
+          <ol class="unity-steps">
+            <li>在 Unity 中选择 <strong>WebGL</strong> 目标并构建。</li>
+            <li>将构建产物上传到任意静态托管（如自建 CDN 或对象存储）。</li>
+            <li>复制生成的 <code>index.html</code> 访问链接，粘贴到右侧输入框。</li>
+            <li>点击“加载游戏”，即可在页面中直接展示。</li>
+          </ol>
+          <p class="lead">我们支持 iframe 方式嵌入，默认展示安全沙箱。可在需求沟通时开通自定义域名与加载指令支持。</p>
+        </div>
+        <div class="unity-embed card">
+          <label for="unity-url">输入 WebGL 构建链接</label>
+          <input id="unity-url" type="url" placeholder="https://your-domain.com/Build/index.html" value="https://unity.com/static/test-content/webgl/Build/index.html">
+          <button id="load-unity">加载游戏</button>
+          <iframe id="unity-frame" class="unity-frame" src="https://unity.com/static/test-content/webgl/Build/index.html" sandbox="allow-scripts allow-same-origin" title="Unity WebGL 预览"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">准备好开始了吗？</h2>
+      <div class="card feature">
+        <p>告诉我们你的想法，让我们一起打造一个令人惊艳的展示。发送邮件到 <a class="secondary" href="mailto:hello@creative-space.test">hello@creative-space.test</a>，或点击下方按钮预约演示。</p>
+        <div class="hero-actions">
+          <a class="cta" href="mailto:hello@creative-space.test">预约演示</a>
+          <a class="secondary" href="#top">回到顶部</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2024 创意空间 · 让好点子被看见
+  </footer>
+
+  <script>
+    const loadBtn = document.getElementById('load-unity');
+    const urlInput = document.getElementById('unity-url');
+    const frame = document.getElementById('unity-frame');
+
+    loadBtn?.addEventListener('click', () => {
+      const url = urlInput?.value?.trim();
+      if (!url) return;
+      frame.src = url;
+      loadBtn.textContent = '加载中…';
+      setTimeout(() => { loadBtn.textContent = '加载游戏'; }, 800);
+    });
+  </script>
+</body>
+</html>
