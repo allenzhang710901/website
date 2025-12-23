@@ -108,6 +108,13 @@
       align-items: center;
       margin-top: 32px;
     }
+    
+    .section-shell {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
 
     .badge {
       display: inline-flex;
@@ -269,6 +276,61 @@
       text-align: center;
     }
 
+    .unity-steps {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+    }
+
+    .unity-embed {
+      background: linear-gradient(135deg, rgba(109, 211, 255, 0.06), rgba(155, 123, 255, 0.05));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .unity-embed label {
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    .unity-embed input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--fg);
+      outline: none;
+    }
+
+    .unity-embed input:focus {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .unity-embed button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      color: #05070f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .unity-frame {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
     @media (max-width: 900px) {
       header, main {
         padding: 24px;
@@ -296,6 +358,7 @@
     <nav>
       <a href="#vision">愿景</a>
       <a href="#features">特色</a>
+      <a href="#unity">Unity导入</a>
       <a href="#contact">联系</a>
       <a class="cta" href="#contact">立即合作</a>
     </nav>
@@ -356,6 +419,28 @@
       </div>
     </section>
 
+    <section id="unity">
+      <h2 class="section-title">导入你的 Unity WebGL 游戏</h2>
+      <div class="section-shell">
+        <div class="card feature">
+          <h3>四步上线</h3>
+          <ol class="unity-steps">
+            <li>在 Unity 中选择 <strong>WebGL</strong> 目标并构建。</li>
+            <li>将构建产物上传到任意静态托管（如自建 CDN 或对象存储）。</li>
+            <li>复制生成的 <code>index.html</code> 访问链接，粘贴到右侧输入框。</li>
+            <li>点击“加载游戏”，即可在页面中直接展示。</li>
+          </ol>
+          <p class="lead">我们支持 iframe 方式嵌入，默认展示安全沙箱。可在需求沟通时开通自定义域名与加载指令支持。</p>
+        </div>
+        <div class="unity-embed card">
+          <label for="unity-url">输入 WebGL 构建链接</label>
+          <input id="unity-url" type="url" placeholder="https://your-domain.com/Build/index.html" value="https://unity.com/static/test-content/webgl/Build/index.html">
+          <button id="load-unity">加载游戏</button>
+          <iframe id="unity-frame" class="unity-frame" src="https://unity.com/static/test-content/webgl/Build/index.html" sandbox="allow-scripts allow-same-origin" title="Unity WebGL 预览"></iframe>
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
       <h2 class="section-title">准备好开始了吗？</h2>
       <div class="card feature">
@@ -371,5 +456,19 @@
   <footer class="footer">
     © 2024 创意空间 · 让好点子被看见
   </footer>
+
+  <script>
+    const loadBtn = document.getElementById('load-unity');
+    const urlInput = document.getElementById('unity-url');
+    const frame = document.getElementById('unity-frame');
+
+    loadBtn?.addEventListener('click', () => {
+      const url = urlInput?.value?.trim();
+      if (!url) return;
+      frame.src = url;
+      loadBtn.textContent = '加载中…';
+      setTimeout(() => { loadBtn.textContent = '加载游戏'; }, 800);
+    });
+  </script>
 </body>
 </html>
